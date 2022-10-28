@@ -57,12 +57,13 @@ group by roll_no,name,dob
 having count(*)>1;
 
 /*4*/
-select *
-from course
-into @v1;
 
-select @v1
-from student
+select c_name, fee, duration, roll_no
+from course natural join student
+group by roll_no
+order by count(roll_no) limit 1;
+
+/*5*/
 
 drop table student;
 drop table course;
